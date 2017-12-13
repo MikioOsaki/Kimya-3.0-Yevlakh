@@ -16,6 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".MainActivity" />
 
         <!-- nach https://www.bignerdranch.com/blog/splash-screens-the-right-way/ hinzugefügt -->
         <activity
@@ -30,7 +33,19 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".FormActivity" />
-        <activity android:name=".ManuelleSucheActivity"></activity>
+        <activity android:name=".ManuelleSucheActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
     </application>
 
 </manifest>
