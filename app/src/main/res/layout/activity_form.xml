@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    tools:context="com.example.mikio.kimya_3_0_Yevlakh.FormActivity">
+
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/zur_ck" />
+
+    <EditText
+        android:id="@+id/editTextAnlage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/anlage"
+        android:layout_below="@+id/buttonBack"/>
+
+    <EditText
+        android:id="@+id/editTextMenge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/menge"
+        android:layout_below="@+id/editTextAnlage"/>
+
+    <EditText
+        android:id="@+id/editTextEinheit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/einheit"
+        android:layout_below="@+id/editTextMenge"/>
+
+    <Button
+        android:id="@+id/buttonSpeichern"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/speichern"
+        android:layout_below="@id/editTextEinheit"/>
+
+    <ImageView
+        android:id="@+id/imageViewMSolutions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/msolutions"
+        android:layout_marginTop="230dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/buttonSpeichern"/>
+
+
+
+
+</RelativeLayout>
