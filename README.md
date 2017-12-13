@@ -1,6 +1,6 @@
 # Kimya
 
-A in progress student project.
+A in progress student project. Fish.
 
 Current version 3.0 Yevlakh.
 
