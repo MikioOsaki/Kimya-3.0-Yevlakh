@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +21,6 @@ public class AdapterFish extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private LayoutInflater inflater;
     List<DataFish> data = Collections.emptyList();
-    DataFish current;
 
     // create constructor to initialize context and data sent from MainActivity
     public AdapterFish(Context context, List<DataFish> data) {
@@ -49,7 +49,8 @@ public class AdapterFish extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         myHolder.textType.setText("Category: " + current.catName);
         myHolder.textPrice.setText("Rs. " + current.price + "\\Kg");
         myHolder.textPrice.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
-
+        myHolder.rootView.setTag(position);
+        myHolder.rootView.setOnClickListener(myHolder);
     }
 
     // return total item from List
@@ -60,28 +61,37 @@ public class AdapterFish extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        TextView textFishName;
-        TextView textSize;
-        TextView textType;
-        TextView textPrice;
+        private View rootView;
+        private TextView textFishName;
+        private TextView textSize;
+        private TextView textType;
+        private TextView textPrice;
 
         // create constructor to get widget reference
         public MyHolder(View itemView) {
             super(itemView);
+            rootView = itemView;
             textFishName = (TextView) itemView.findViewById(R.id.textFishName);
             textSize = (TextView) itemView.findViewById(R.id.textSize);
             textType = (TextView) itemView.findViewById(R.id.textType);
             textPrice = (TextView) itemView.findViewById(R.id.textPrice);
-            itemView.setOnClickListener(this);
         }
 
         // Click event for all items
         @Override
-        public void onClick(View v) {
-
-            Toast.makeText(context, "You clicked an item", Toast.LENGTH_SHORT).show();
-
+        public void onClick(View clickedRow) {
+            int position = (int) clickedRow.getTag();
+            if (data != null && data.size() >= position) {
+                DataFish dataFish = data.get(position);
+                if (dataFish != null) {
+                    String url = dataFish.url;
+                    if (url != null && !url.isEmpty()) {
+                        Utils.openBrowser(clickedRow.getContext(), url);
+                        return;
+                    }
+                }
+            }
+            Toast.makeText(clickedRow.getContext(), "Im Suchergebnis war keine URL enthalten :(", Toast.LENGTH_LONG).show();
         }
     }
 }

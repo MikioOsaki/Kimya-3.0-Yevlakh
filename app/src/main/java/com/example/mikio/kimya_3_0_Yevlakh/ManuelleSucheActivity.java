@@ -196,12 +196,19 @@ private class AsyncFetch extends AsyncTask<String, String, String> {
 
                 // Extract data from json and store into ArrayList as class objects
                 for (int i = 0; i < jArray.length(); i++) {
-                    JSONObject json_data = jArray.getJSONObject(i);
-                    DataFish fishData = new DataFish();
-                    fishData.fishName = json_data.getString("fish_name");
-                    fishData.catName = json_data.getString("cat_name");
-                    fishData.sizeName = json_data.getString("size_name");
-                    fishData.price = json_data.getInt("price");
+                    JSONObject jsonData = jArray.getJSONObject(i);
+                    String fishName = jsonData.getString("fish_name");
+                    String catName = jsonData.getString("cat_name");
+                    String sizeName = jsonData.getString("size_name");
+                    int price = jsonData.getInt("price");
+                    String url = jsonData.getString("url");
+
+                    DataFish fishData = new DataFish(
+                            fishName,
+                            catName,
+                            sizeName,
+                            price,
+                            "http://www.gigatronik.com/fileadmin/Pdf/Beispiel.pdf");
                     data.add(fishData);
                 }
 
